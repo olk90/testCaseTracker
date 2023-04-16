@@ -1,18 +1,31 @@
 import os
-
+import platform
 from io import BytesIO
-from docx import Document
-from docx.shared import Cm
+
+from Xlib.display import Display
+from Xlib import X
 
 import pyscreenshot as pss
-from PIL import ImageDraw
-
+from PIL import ImageDraw, ImageGrab
+from docx import Document
+from docx.shared import Cm
 from pynput.mouse import Listener as MouseListener, Button
 
 
 def on_click(x, y, button, pressed):
     if button == Button.left and pressed:
-        im = pss.grab(backend="pil")
+
+        if platform.system() == "Linux":
+            display = Display()
+            root = display.screen().root
+            window = root.get_full_property(display.intern_atom('_NET_ACTIVE_WINDOW'), X.AnyPropertyType).value[0]
+            bbox = (0, 0, 0, 0)
+            im = ImageGrab.grab(bbox, backend="pil", window_id=window)
+        else:
+            # TODO to be tested
+            import pygetwindow as pgw
+            window = pgw.getActiveWindow()
+            im = pss.grab(backend="pil", bbox=window.box)
 
         draw = ImageDraw.Draw(im)
         offset = 32
