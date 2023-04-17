@@ -1,2 +1,3 @@
 # testCaseTracker
-app that runs in the background and takes a screenshot after every click
+
+This app currently under development and is not ready for use yet.

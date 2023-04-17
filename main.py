@@ -11,18 +11,27 @@ from pynput.mouse import Listener as MouseListener, Button
 
 
 def take_screenshot():
-    window_pos_x, window_pos_y, window_width, window_height = pyautogui.getActiveWindow().get_position()
-    return pyautogui.screenshot(region=(window_pos_x, window_pos_y, window_width, window_height))
+    window = pyautogui.getActiveWindow()
+    wpx = window.topleft.x
+    wpy = window.topleft.y
+    ww = window.width
+    wh = window.height
+    return pyautogui.screenshot(region=(wpx, wpy, ww, wh)), window.left, window.top
 
 
 def on_click(x, y, button, pressed):
     if button == Button.left and pressed:
 
-        if platform.system() == "Linux":
+        system = platform.system()
+        if system == "Linux":
             # TODO This won't work on Wayland.
             im = pss.grab(backend="pil")
+        elif system == "Windows":
+            im, relative_x, relative_y = take_screenshot()
+            x -= relative_x
+            y -= relative_y
         else:
-            im = take_screenshot()
+            raise Exception("Unsupported operating system: {}".format(system))
 
         draw = ImageDraw.Draw(im)
         offset = 32
