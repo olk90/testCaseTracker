@@ -2,30 +2,27 @@ import os
 import platform
 from io import BytesIO
 
-from Xlib.display import Display
-from Xlib import X
-
+import pyautogui
 import pyscreenshot as pss
-from PIL import ImageDraw, ImageGrab
+from PIL import ImageDraw
 from docx import Document
 from docx.shared import Cm
 from pynput.mouse import Listener as MouseListener, Button
+
+
+def take_screenshot():
+    window_pos_x, window_pos_y, window_width, window_height = pyautogui.getActiveWindow().get_position()
+    return pyautogui.screenshot(region=(window_pos_x, window_pos_y, window_width, window_height))
 
 
 def on_click(x, y, button, pressed):
     if button == Button.left and pressed:
 
         if platform.system() == "Linux":
-            display = Display()
-            root = display.screen().root
-            window = root.get_full_property(display.intern_atom('_NET_ACTIVE_WINDOW'), X.AnyPropertyType).value[0]
-            bbox = (0, 0, 0, 0)
-            im = ImageGrab.grab(bbox, backend="pil", window_id=window)
+            # TODO This won't work on Wayland.
+            im = pss.grab(backend="pil")
         else:
-            # TODO to be tested
-            import pygetwindow as pgw
-            window = pgw.getActiveWindow()
-            im = pss.grab(backend="pil", bbox=window.box)
+            im = take_screenshot()
 
         draw = ImageDraw.Draw(im)
         offset = 32
