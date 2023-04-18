@@ -114,7 +114,7 @@ def draw_bullet(im, x, y):
     except OSError:
         font = ImageFont.truetype("LiberationSans-Bold.ttf", size=properties.offset)
 
-    draw.text((x, y), "{}".format(properties.screenshots_taken), fill="white", font=font, anchor="mm")
+    draw.text((x, y), "{}".format(properties.screenshots_taken + 1), fill="white", font=font, anchor="mm")
 
 
 if __name__ == "__main__":
