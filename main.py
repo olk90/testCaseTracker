@@ -1,3 +1,4 @@
+import argparse
 import os
 import platform
 from io import BytesIO
@@ -10,6 +11,14 @@ from docx.shared import Cm
 from pynput.mouse import Listener as MouseListener, Button
 
 
+class RuntimeProperties:
+    screenshots_taken = 0
+    file_path = ""
+
+
+properties = RuntimeProperties()
+
+
 def take_screenshot():
     window = pyautogui.getActiveWindow()
     wpx = window.topleft.x
@@ -20,7 +29,7 @@ def take_screenshot():
 
 
 def on_click(x, y, button, pressed):
-    if button == Button.left and pressed:
+    if button == Button.middle and pressed:
 
         system = platform.system()
         if system == "Linux":
@@ -41,12 +50,8 @@ def on_click(x, y, button, pressed):
         im.save(im_bytes, format="png")
         im_bytes.seek(0)
 
-        directory = os.path.expanduser("~")
-        filename = "screenshots.docx"
-        file_path = os.path.join(directory, filename)
-
-        if os.path.exists(file_path):
-            doc = Document(file_path)
+        if os.path.exists(properties.file_path):
+            doc = Document(properties.file_path)
         else:
             doc = Document()
 
@@ -55,11 +60,22 @@ def on_click(x, y, button, pressed):
         run = paragraph.add_run()
         run.add_picture(im_bytes, width=Cm(page_width))
 
-        doc.save(file_path)
+        doc.save(properties.file_path)
+        properties.screenshots_taken += 1
+        if properties.screenshots_taken == 1:
+            print("Took first screenshot")
+        else:
+            print("Took {} screenshots".format(properties.screenshots_taken))
 
 
-if __name__ == '__main__':
-    print("Press Ctrl+C to exit")
+if __name__ == "__main__":
+    print("Use middle click to take a screenshot!")
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-f", "--file", type=str, required=True, help="target file to store the screenshots")
+    args = parser.parse_args()
+    properties.file_path = args.file
+
     try:
         with MouseListener(on_click=on_click) as ml:
             ml.join()
