@@ -38,8 +38,14 @@ def on_click(x, y, button, pressed):
 def get_image(x, y):
     system = platform.system()
     if system == "Linux":
-        # TODO This won't work on Wayland.
-        im = pss.grab(backend="pil")
+        is_wayland = os.environ.get("WAYLAND_DISPLAY")
+        is_x11 = os.environ.get("DISPLAY")
+        if is_wayland:
+            raise Exception("Wayland is not yet implemented")
+        elif is_x11:
+            im = pss.grab(backend="pil")
+        else:
+            raise Exception("Unsupported display server")
     elif system == "Windows":
         im, relative_x, relative_y = pyautogui_screenshot()
         x -= relative_x
