@@ -3,7 +3,6 @@ import os
 import platform
 from io import BytesIO
 
-import pyautogui
 import pyscreenshot as pss
 from docx import Document
 from docx.shared import Cm
@@ -11,6 +10,7 @@ from pynput.mouse import Listener as MouseListener, Button
 
 from draw.draw_functions import draw_marker
 from properties import properties
+from screenshots.pyautogui_screenshots import pyautogui_screenshot
 
 
 def on_click(x, y, button, pressed):
@@ -45,15 +45,6 @@ def get_image(x, y):
     else:
         raise Exception("Unsupported operating system: {}".format(system))
     return im, x, y
-
-
-def pyautogui_screenshot():
-    window = pyautogui.getActiveWindow()
-    wpx = window.topleft.x
-    wpy = window.topleft.y
-    ww = window.width
-    wh = window.height
-    return pyautogui.screenshot(region=(wpx, wpy, ww, wh)), window.left, window.top
 
 
 def write_to_file(im):
