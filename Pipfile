@@ -4,14 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-#pyinstaller = "*"
 pyscreenshot = "*"
 pillow = "*"
 python-docx = "*"
 pyautogui = "*"
 pynput = "*"
+xlib = "*"
 
 [dev-packages]
-#[requires]
-#python_version = "3.11"
-#python_full_version = "3.11"

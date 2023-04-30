@@ -3,7 +3,6 @@ import os
 import platform
 from io import BytesIO
 
-import pyscreenshot as pss
 from docx import Document
 from docx.shared import Cm
 from pynput.mouse import Listener as MouseListener, Button
@@ -11,6 +10,7 @@ from pynput.mouse import Listener as MouseListener, Button
 from draw.draw_functions import draw_marker
 from properties import properties
 from screenshots.pyautogui_screenshots import pyautogui_screenshot
+from screenshots.xlib_screenshots import xlib_screenshot
 
 
 def on_click(x, y, button, pressed):
@@ -35,7 +35,9 @@ def get_image(x, y):
         if is_wayland:
             raise Exception("Wayland is not yet implemented")
         elif is_x11:
-            im = pss.grab(backend="pil")
+            im, relative_x, relative_y = xlib_screenshot()
+            x -= relative_x
+            y -= relative_y
         else:
             raise Exception("Unsupported display server")
     elif system == "Windows":
