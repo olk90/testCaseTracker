@@ -56,6 +56,7 @@ def write_to_file(im):
     if os.path.exists(properties.file_path):
         doc = Document(properties.file_path)
     else:
+        os.makedirs(os.path.dirname(properties.file_path))
         doc = Document()
     page_width = doc.sections[0].page_width.cm - doc.sections[0].left_margin.cm - doc.sections[0].right_margin.cm
     paragraph = doc.add_paragraph()
