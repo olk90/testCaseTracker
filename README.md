@@ -48,6 +48,7 @@ recognized.
 
 ## Known issues
 
+* It is not yet possible to take the screenshots on any other display than the main display!
 * Right now screenshots in an X11 environment are not cropped properly. A fix is in the works.
 
 ## Legal Notice
