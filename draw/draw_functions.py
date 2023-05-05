@@ -10,7 +10,7 @@ def draw_marker(im, x, y):
         draw_circle(im, x, y)
     elif properties.marker == "bullet":
         draw_bullet(im, x, y)
-    else:
+    elif properties.marker == "rect":
         draw_rect(im, x, y)
 
 

@@ -1,7 +1,7 @@
 class RuntimeProperties:
     screenshots_taken = 0
     file_path = ""
-    marker = "rect"
+    marker = "none"
     offset = 32
 
 

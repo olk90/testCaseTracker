@@ -68,8 +68,8 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-f", "--file", type=str, required=True, help="target file to store the screenshots")
-    parser.add_argument("-m", "--marker", type=str, choices=["arrow", "rect", "circle", "bullet"],
-                        help="symbol that marks the clicked")
+    parser.add_argument("-m", "--marker", type=str, choices=["arrow", "rect", "circle", "bullet", "none"],
+                        help="Symbol that marks the clicked area. Default is 'none' ('none' is providing no marker at all)")
     args = parser.parse_args()
 
     if args.marker:
