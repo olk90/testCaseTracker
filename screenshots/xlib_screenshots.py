@@ -1,11 +1,11 @@
 # Code in this file is derived from https://gist.github.com/mgalgs/8c1dd50fe3c19a1719fb2ecd012c4edd
 
+import traceback
 from collections import namedtuple
 
-import traceback
 import Xlib
-import Xlib.display as d
 import pyscreenshot as pss
+from Xlib import display as d
 
 display = d.Display()
 root = display.screen().root
