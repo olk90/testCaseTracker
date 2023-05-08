@@ -10,7 +10,6 @@ from pynput.mouse import Listener as MouseListener, Button
 from draw.draw_functions import draw_marker
 from properties import properties
 from screenshots.pyautogui_screenshots import pyautogui_screenshot
-from screenshots.xlib_screenshots import xlib_screenshot
 
 
 def on_click(x, y, button, pressed):
@@ -35,6 +34,7 @@ def get_image(x, y):
         if is_wayland:
             raise Exception("Wayland is not yet implemented")
         elif is_x11:
+            from screenshots.xlib_screenshots import xlib_screenshot
             im, relative_x, relative_y = xlib_screenshot()
             x -= relative_x
             y -= relative_y
