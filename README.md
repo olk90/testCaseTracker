@@ -9,17 +9,17 @@ supports both Windows and Linux operating systems.
 * Python 3.10 or above **(might also run on older versions, but this has not been tested!)**
 * On Windows, pyautogui is used to take screenshots
 * On Linux, xlib is used to take screenshots
-    * Wayland implementation might be added in the future
+    * implementation for Wayland might be added in the future
 
 ## Usage
 
 1. Open the command prompt or terminal.
-2. Navigate to the directory containing the screenshot_taker.py file.
-3. Type the following command: python screenshot_taker.py -f <file_path> -m <marker>
-4. Replace <file_path> with the path and name of the Word document you want to create. If the file does not exist, it
+2. Navigate to the directory containing the `main.py` file.
+3. Type the following command: python `main.py -f <file_path> -m <marker>`
+4. Replace `<file_path>` with the path and name of the Word document you want to create. If the file does not exist, it
    will be created automatically.
-5. Optionally, replace <marker> with one of the following options: arrow, rect, circle, bullet. This option will
-   determine which symbol is used to mark the clicked location.
+5. Optionally, replace `<marker>` with one of the following options: `none`, `arrow`, `rect`, `circle`, `bullet`. This
+   option will determine which symbol is used to mark the clicked location.
 
 ### Example usage
 
@@ -55,7 +55,7 @@ recognized.
 
 This program uses the following third-party libraries, each with its own license:
 
-- [pyscreenshot](https://github.com/ponty/pyscreenshot/blob/master/LICENSE.txt) (BSD 2-Clause "Simplified" License) 
+- [pyscreenshot](https://github.com/ponty/pyscreenshot/blob/master/LICENSE.txt) (BSD 2-Clause "Simplified" License)
 
 - [pillow](https://github.com/python-pillow/Pillow/blob/main/LICENSE) (PIL Software License)
 
