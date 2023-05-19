@@ -32,7 +32,10 @@ def get_image(x, y):
         is_wayland = os.environ.get("WAYLAND_DISPLAY")
         is_x11 = os.environ.get("DISPLAY")
         if is_wayland:
-            raise Exception("Wayland is not yet implemented")
+            # raise Exception("Wayland is not yet implemented")
+            from screenshots.pil_screenshots import pil_screenshot
+            screenshot = pil_screenshot()
+            x = 0
         elif is_x11:
             from screenshots.xlib_screenshots import xlib_screenshot
             im, relative_x, relative_y = xlib_screenshot()

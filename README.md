@@ -56,17 +56,12 @@ recognized.
 This program uses the following third-party libraries, each with its own license:
 
 - [pyscreenshot](https://github.com/ponty/pyscreenshot/blob/master/LICENSE.txt) (BSD 2-Clause "Simplified" License)
-
 - [pillow](https://github.com/python-pillow/Pillow/blob/main/LICENSE) (PIL Software License)
-
 - [python-docx](https://github.com/python-openxml/python-docx/blob/master/LICENSE) (MIT License)
-
 - [pyautogui](https://github.com/asweigart/pyautogui/blob/master/LICENSE.txt) (BSD-3-Clause License)
-
 - [pynput](https://github.com/moses-palmer/pynput/blob/master/COPYING.LGPL) (LGPL-3.0 License)
-
 - [python-xlib](https://github.com/python-xlib/python-xlib/blob/master/LICENSE) (LGPL-2.1 License)
+- [pywayland](https://github.com/flacjacket/pywayland) (Apache License 2.0)
 
 This program is licensed under the terms of the GNU General Public License version 3 (GPLv3).
 Please refer to the LICENSE file for more information.
-

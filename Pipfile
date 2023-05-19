@@ -10,6 +10,7 @@ python-docx = "==0.8.11"
 pyautogui = "==0.9.53"
 pynput = "==1.7.6"
 python-xlib = "==0.33"
+pywayland = "==0.4.15"
 
 [dev-packages]
 
