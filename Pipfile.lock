@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "3a8e850910659e34dbc674ddbb3171e175045f077a99291615bbce74466e27a0"
+            "sha256": "2300767dfba123421e157d87548f32015020981b277b22d0528fe79e035fec2c"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -103,7 +103,7 @@
             "hashes": [
                 "sha256:299db8628cc73b237fc1cc57d3c2948faa0756e2a58b6194b5bf81dc2081f1e3"
             ],
-            "markers": "'linux' in sys_platform",
+            "index": "pypi",
             "version": "==1.6.1"
         },
         "jeepney": {

@@ -5,30 +5,14 @@ from io import BytesIO
 
 from docx import Document
 from docx.shared import Cm
-from pynput.mouse import Listener as MouseListener, Button
 
-from draw.draw_functions import draw_marker
 from properties import properties
-from screenshots.pyautogui_screenshots import pyautogui_screenshot
 
-
-def on_click(x, y, button, pressed):
-    if button == Button.middle and pressed:
-
-        im, x, y = get_image(x, y)
-        draw_marker(im, x, y)
-        write_to_file(im)
-
-        properties.screenshots_taken += 1
-        if properties.screenshots_taken == 1:
-            print("Took first screenshot")
-        else:
-            print("Took {} screenshots".format(properties.screenshots_taken))
+SYSTEM = platform.system()
 
 
 def get_image(x, y):
-    system = platform.system()
-    if system == "Linux":
+    if SYSTEM == "Linux":
         is_wayland = os.environ.get("WAYLAND_DISPLAY")
         is_x11 = os.environ.get("DISPLAY")
         if is_wayland:
@@ -43,12 +27,13 @@ def get_image(x, y):
             y -= relative_y
         else:
             raise Exception("Unsupported display server")
-    elif system == "Windows":
+    elif SYSTEM == "Windows":
+        from screenshots.pyautogui_screenshots import pyautogui_screenshot
         im, relative_x, relative_y = pyautogui_screenshot()
         x -= relative_x
         y -= relative_y
     else:
-        raise Exception("Unsupported operating system: {}".format(system))
+        raise Exception("Unsupported operating system: {}".format(SYSTEM))
     return im, x, y
 
 
@@ -83,7 +68,13 @@ if __name__ == "__main__":
 
     try:
         print("Use middle click to take a screenshot!")
-        with MouseListener(on_click=on_click) as ml:
-            ml.join()
+        if SYSTEM == "Windows":
+            from input_listeners.windows import attach_listener as win_al
+            win_al()
+        elif SYSTEM == "Linux":
+            from input_listeners.linux import attach_listener as lin_al
+            lin_al()
+        else:
+            raise Exception("Unsupported operating system: {}".format(SYSTEM))
     except KeyboardInterrupt:
         print("\n Good bye!")

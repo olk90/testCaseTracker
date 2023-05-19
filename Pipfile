@@ -11,6 +11,7 @@ pyautogui = "==0.9.53"
 pynput = "==1.7.6"
 python-xlib = "==0.33"
 pywayland = "==0.4.15"
+evdev = "==1.6.1"
 
 [dev-packages]
 
