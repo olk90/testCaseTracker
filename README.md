@@ -1,5 +1,7 @@
 # testCaseTracker
 
+I have moved this repository to https://codeberg.org/olk90/testCaseTracker where I will continue development.
+
 testCaseTracker is a Python script that enables you to capture screenshots and saves them into a Word document. You can
 mark the exact location where you clicked with various symbols such as arrow, rectangle, circle or bullet. The script
 supports both Windows and Linux operating systems.
